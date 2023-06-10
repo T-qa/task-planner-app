@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:task_planner_app/common/utils/constants.dart';
+import 'package:task_planner_app/features/onboarding/pages/onboarding.dart';
 import 'package:task_planner_app/features/todo/pages/home_page.dart';
 
 void main() {
@@ -22,10 +24,12 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'T-qa',
               theme: ThemeData(
+                  scaffoldBackgroundColor: AppConstant.kBkDark,
                   colorScheme:
                       ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                   useMaterial3: true),
-              home: const HomePage());
+                  themeMode: ThemeMode.dark,
+              home: const OnBoarding());
         });
   }
 }
