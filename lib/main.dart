@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
                       ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                   useMaterial3: true),
                   themeMode: ThemeMode.dark,
-              home: const OnBoarding());
+              home: const HomePage());
         });
   }
 }

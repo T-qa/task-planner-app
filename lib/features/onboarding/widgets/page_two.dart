@@ -29,7 +29,7 @@ class PageTwo extends StatelessWidget {
           CustomButton(
             width: AppConstant.kWidth * 0.9,
             height: AppConstant.kHeight * 0.9,
-            color: AppConstant.kLight,
+            textButtonColor: AppConstant.kLight,
             text: 'Login with phone number',
             ontap: () {
               Navigator.pushReplacement(
