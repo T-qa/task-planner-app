@@ -4,7 +4,7 @@ import 'package:task_planner_app/common/widgets/custom_button.dart';
 
 import '../../../common/utils/constants.dart';
 import '../../../common/widgets/height_spacer.dart';
-import '../../auth/pages/login_page.dart';
+import '../../auth/screens/login_screen.dart';
 
 class PageTwo extends StatelessWidget {
   const PageTwo({super.key});
@@ -35,7 +35,7 @@ class PageTwo extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const LoginPage(),
+                  builder: (context) => const LoginScreen(),
                 ),
               );
             },

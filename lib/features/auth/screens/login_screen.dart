@@ -7,18 +7,18 @@ import 'package:task_planner_app/common/widgets/app_style.dart';
 import 'package:task_planner_app/common/widgets/custom_button.dart';
 import 'package:task_planner_app/common/widgets/height_spacer.dart';
 import 'package:task_planner_app/common/widgets/reusable_text.dart';
-import 'package:task_planner_app/features/auth/pages/otp_page.dart';
+import 'package:task_planner_app/features/auth/screens/otp_screen.dart';
 
 import '../../../common/widgets/custom_text_field.dart';
 
-class LoginPage extends ConsumerStatefulWidget {
-  const LoginPage({super.key});
+class LoginScreen extends ConsumerStatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
 }
 
-class _LoginPageState extends ConsumerState<LoginPage> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final TextEditingController _phoneController = TextEditingController();
   Country country = Country(
     phoneCode: "1",
@@ -115,7 +115,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const OTPPage(),
+                        builder: (context) => const OTPScreen(),
                       ),
                     );
                   },

@@ -6,8 +6,8 @@ import 'package:task_planner_app/common/widgets/app_style.dart';
 import 'package:task_planner_app/common/widgets/height_spacer.dart';
 import 'package:task_planner_app/common/widgets/reusable_text.dart';
 
-class OTPPage extends StatelessWidget {
-  const OTPPage({super.key});
+class OTPScreen extends StatelessWidget {
+  const OTPScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
