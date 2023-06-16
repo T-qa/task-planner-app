@@ -9,6 +9,7 @@ import 'package:task_planner_app/common/widgets/reusable_text.dart';
 import 'package:task_planner_app/common/widgets/tile_expansion.dart';
 import 'package:task_planner_app/common/widgets/width_spacer.dart';
 import 'package:task_planner_app/features/todo/controllers/expansion_provider.dart';
+import 'package:task_planner_app/features/todo/screens/add_todo_screen.dart';
 import 'package:task_planner_app/features/todo/widgets/todo_tile.dart';
 
 import '../../../common/widgets/height_spacer.dart';
@@ -63,7 +64,12 @@ class _HomePageState extends ConsumerState<HomePage>
                         ),
                       ),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AddTodo()));
+                        },
                         child: const Icon(
                           Icons.add,
                           color: AppConstant.kBkDark,

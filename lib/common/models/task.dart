@@ -1,6 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
-
 class Task {
   int? id;
   String? title;
@@ -42,7 +39,8 @@ class Task {
       id: map['id'] != null ? map['id'] as int : null,
       title: map['title'] != null ? map['title'] as String : null,
       desc: map['desc'] != null ? map['desc'] as String : null,
-      isCompleted: map['isCompleted'] != null ? map['isCompleted'] as int : null,
+      isCompleted:
+          map['isCompleted'] != null ? map['isCompleted'] as int : null,
       date: map['date'] != null ? map['date'] as String : null,
       startTime: map['startTime'] != null ? map['startTime'] as String : null,
       endTime: map['endTime'] != null ? map['endTime'] as String : null,
@@ -50,6 +48,4 @@ class Task {
       repeat: map['repeat'] != null ? map['repeat'] as String : null,
     );
   }
-
-
 }
