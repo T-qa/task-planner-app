@@ -11,18 +11,22 @@ import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
 import 'package:task_planner_app/features/todo/controllers/dates/dates_provider.dart';
 import 'package:task_planner_app/features/todo/controllers/todos/todo_provider.dart';
 
-import '../../../common/models/task.dart';
+class UpdateTask extends ConsumerStatefulWidget {
+  const UpdateTask({
+    required this.id,
+    super.key,
+  });
 
-class AddTodo extends ConsumerStatefulWidget {
-  const AddTodo({super.key});
+  final int id;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AddTodoState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _UpdateTaskState();
 }
 
-class _AddTodoState extends ConsumerState<AddTodo> {
-  final TextEditingController title = TextEditingController();
-  final TextEditingController description = TextEditingController();
+class _UpdateTaskState extends ConsumerState<UpdateTask> {
+  final TextEditingController title = TextEditingController(text: titles);
+  final TextEditingController description =
+      TextEditingController(text: descriptions);
   @override
   Widget build(BuildContext context) {
     var scheduleDate = ref.watch(dateStateProvider);
@@ -134,22 +138,19 @@ class _AddTodoState extends ConsumerState<AddTodo> {
             const HeightSpacer(heightSpacing: 20),
             CustomButton(
               ontap: () {
-                Task task = Task(
-                  title: title.text,
-                  desc: description.text,
-                  isCompleted: 0,
-                  date: scheduleDate,
-                  startTime: startTime.substring(10, 16),
-                  endTime: endTime.substring(10, 16),
-                  remind: 0,
-                  repeat: 'Yes',
-                );
                 if (title.text.isNotEmpty &&
                     description.text.isNotEmpty &&
                     scheduleDate.isNotEmpty &&
                     startTime.isNotEmpty &&
                     endTime.isNotEmpty) {
-                  ref.read(todoStateProvider.notifier).addItem(task);
+                  ref.read(todoStateProvider.notifier).updateItem(
+                      widget.id,
+                      title.text,
+                      description.text,
+                      0,
+                      scheduleDate,
+                      startTime.substring(10, 16),
+                      endTime.substring(10, 16));
                   ref.read(finishTimeStateProvider.notifier).setStart('');
                   ref.read(startTimeStateProvider.notifier).setStart('');
                   ref.read(dateStateProvider.notifier).setDate('');

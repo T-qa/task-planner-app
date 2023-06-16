@@ -6,13 +6,15 @@ import 'package:task_planner_app/common/utils/constants.dart';
 import 'package:task_planner_app/common/widgets/app_style.dart';
 import 'package:task_planner_app/common/widgets/custom_text_field.dart';
 import 'package:task_planner_app/common/widgets/reusable_text.dart';
-import 'package:task_planner_app/common/widgets/tile_expansion.dart';
 import 'package:task_planner_app/common/widgets/width_spacer.dart';
-import 'package:task_planner_app/features/todo/controllers/expansion_provider.dart';
+import 'package:task_planner_app/features/todo/controllers/todos/todo_provider.dart';
 import 'package:task_planner_app/features/todo/screens/add_todo_screen.dart';
-import 'package:task_planner_app/features/todo/widgets/todo_tile.dart';
+import 'package:task_planner_app/features/todo/widgets/completed_task.dart';
+import 'package:task_planner_app/features/todo/widgets/day_after_tomorrow_task.dart';
+import 'package:task_planner_app/features/todo/widgets/tomorrow_task.dart';
 
 import '../../../common/widgets/height_spacer.dart';
+import '../widgets/today_task.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -31,6 +33,8 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(todoStateProvider.notifier).refresh();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -203,89 +207,21 @@ class _HomePageState extends ConsumerState<HomePage>
                   ),
                   child: TabBarView(controller: _tabController, children: [
                     Container(
-                      color: AppConstant.kBkLight,
-                      height: AppConstant.kHeight * 0.3,
-                      child: ListView(
-                        children: [
-                          TodoTile(
-                            start: '03:00',
-                            end: '05:00',
-                            switcher: Switch(
-                              value: true,
-                              onChanged: (value) {},
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                        color: AppConstant.kBkLight,
+                        height: AppConstant.kHeight * 0.3,
+                        child: const TodayTask()),
                     Container(
                       color: AppConstant.kBkLight,
                       height: AppConstant.kHeight * 0.3,
+                      child: const CompletedTask(),
                     ),
                   ]),
                 ),
               ),
               const HeightSpacer(heightSpacing: 20),
-              TileExpansion(
-                text: 'Tomorrow \'s Task',
-                text2: 'Tomorrow \'s Task are shown here',
-                onExpansionChanged: (bool expanded) {
-                  ref.read(expansionStateProvider.notifier).setStart(!expanded);
-                },
-                trailing: ref.watch(expansionStateProvider)
-                    ? Padding(
-                        padding: EdgeInsets.only(right: 12.0.w),
-                        child: const Icon(AntDesign.circledown,
-                            color: AppConstant.kLight),
-                      )
-                    : const Icon(
-                        AntDesign.closecircle,
-                        color: AppConstant.kBlueLight,
-                      ),
-                children: [
-                  TodoTile(
-                    start: '03:00',
-                    end: '05:00',
-                    switcher: Switch(
-                      value: true,
-                      onChanged: (value) {},
-                    ),
-                  ),
-                ],
-              ),
+              const TomorrowTask(),
               const HeightSpacer(heightSpacing: 20),
-              TileExpansion(
-                text: DateTime.now()
-                    .add(const Duration(days: 2))
-                    .toString()
-                    .substring(5, 10),
-                text2: 'Day After tomorrow task',
-                onExpansionChanged: (bool expanded) {
-                  ref
-                      .read(expansionState0Provider.notifier)
-                      .setStart(!expanded);
-                },
-                trailing: ref.watch(expansionState0Provider)
-                    ? Padding(
-                        padding: EdgeInsets.only(right: 12.0.w),
-                        child: const Icon(AntDesign.circledown,
-                            color: AppConstant.kLight),
-                      )
-                    : const Icon(
-                        AntDesign.closecircle,
-                        color: AppConstant.kBlueLight,
-                      ),
-                children: [
-                  TodoTile(
-                    start: '03:00',
-                    end: '05:00',
-                    switcher: Switch(
-                      value: true,
-                      onChanged: (value) {},
-                    ),
-                  ),
-                ],
-              ),
+              const DayAfterTomorrowTask()
             ],
           ),
         ),

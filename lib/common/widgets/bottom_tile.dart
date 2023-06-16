@@ -5,6 +5,7 @@ import 'package:task_planner_app/common/widgets/app_style.dart';
 import 'package:task_planner_app/common/widgets/height_spacer.dart';
 import 'package:task_planner_app/common/widgets/reusable_text.dart';
 import 'package:task_planner_app/common/widgets/width_spacer.dart';
+import 'package:task_planner_app/features/todo/controllers/todos/todo_provider.dart';
 
 class BottomTile extends StatelessWidget {
   final String text;
@@ -26,6 +27,7 @@ class BottomTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Consumer(builder: (context, ref, child) {
+            ref.read(todoStateProvider.notifier).getRandomColor;
             return Container(
               height: 80,
               width: 5,
@@ -35,8 +37,7 @@ class BottomTile extends StatelessWidget {
                     AppConstant.kRadius,
                   ),
                 ),
-                //TODO: ADD DYNAMIC COLORS
-                color: AppConstant.kGreen,
+                color: color,
               ),
             );
           }),

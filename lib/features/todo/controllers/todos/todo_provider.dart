@@ -1,6 +1,10 @@
+import 'dart:math';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:task_planner_app/common/helpers/db_helper.dart';
 import 'package:task_planner_app/common/models/task.dart';
+
+import '../../../../common/utils/constants.dart';
 part 'todo_provider.g.dart';
 
 @riverpod
@@ -18,6 +22,12 @@ class TodoState extends _$TodoState {
   void addItem(Task task) async {
     await DbBHelper.createItem(task);
     refresh();
+  }
+
+  dynamic getRandomColor() {
+    Random random = Random();
+    int randomIndex = random.nextInt(colors.length);
+    return colors[randomIndex];
   }
 
   void updateItem(
@@ -77,7 +87,12 @@ class TodoState extends _$TodoState {
     return tomorrow.toString().substring(0, 10);
   }
 
-  getLast30Dats() {
+  String getDayAfterTomorrow() {
+    DateTime tomorrow = DateTime.now().add(const Duration(days: 2));
+    return tomorrow.toString().substring(0, 10);
+  }
+
+  getLast30Days() {
     DateTime today = DateTime.now();
     DateTime oneMonthAgo = today.subtract(const Duration(days: 30));
     List<String> dates = [];
