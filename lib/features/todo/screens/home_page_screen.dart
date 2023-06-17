@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:task_planner_app/common/helpers/notification_helper.dart';
 import 'package:task_planner_app/common/utils/constants.dart';
 import 'package:task_planner_app/common/widgets/app_style.dart';
 import 'package:task_planner_app/common/widgets/custom_text_field.dart';
@@ -29,6 +30,8 @@ class _HomePageState extends ConsumerState<HomePage>
     length: 2,
     vsync: this,
   );
+  late NotificationHelper notificationHelper;
+  late NotificationHelper notificationController;
   final TextEditingController _searchController = TextEditingController();
 
   @override
