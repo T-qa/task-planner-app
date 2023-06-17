@@ -7,9 +7,11 @@ import 'package:task_planner_app/common/widgets/app_style.dart';
 import 'package:task_planner_app/common/widgets/custom_button.dart';
 import 'package:task_planner_app/common/widgets/height_spacer.dart';
 import 'package:task_planner_app/common/widgets/reusable_text.dart';
-import 'package:task_planner_app/features/auth/screens/otp_screen.dart';
+import 'package:task_planner_app/common/widgets/show_dialog.dart';
+import 'package:task_planner_app/features/auth/controllers/auth_controller.dart';
 
 import '../../../common/widgets/custom_text_field.dart';
+import '../../todo/controllers/code_provider.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -32,6 +34,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     displayNameNoCountryCode: 'US',
     e164Key: '',
   );
+
+  sendCodeToUser() {
+    if (_phoneController.text.isEmpty) {
+      return showAlertDialog(
+          context: context, message: 'Please enter your phone number');
+    } else if (_phoneController.text.length < 8) {
+      return showAlertDialog(
+          context: context, message: 'Your phone number is too short');
+    } else {
+      ref.read(authControllerProvider).sendSMS(
+          context: context,
+          phoneNumber:
+              '+${country.phoneCode}${_phoneController.text}');
+    }
+  }
 
   @override
   void dispose() {
@@ -76,15 +93,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       onTap: () {
                         showCountryPicker(
                           countryListTheme: CountryListThemeData(
-                              backgroundColor: AppConstant.kLight,
+                              backgroundColor: AppConstant.kGreyLight,
                               bottomSheetHeight: AppConstant.kHeight * 0.6,
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(AppConstant.kRadius),
                                 topRight: Radius.circular(AppConstant.kRadius),
                               )),
                           context: context,
-                          onSelect: (value) {
-                            setState(() {});
+                          onSelect: (code) {
+                            setState(() {
+                              country = code;
+                            });
+                            
                           },
                         );
                       },
@@ -112,14 +132,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 padding: const EdgeInsets.all(10.0),
                 child: CustomButton(
                   ontap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const OTPScreen(),
-                      ),
-                    );
+                    sendCodeToUser();
                   },
-                  width: AppConstant.kWidth * 0.85,
+                  width: AppConstant.kWidth * 0.9,
                   height: AppConstant.kHeight * 0.075,
                   textButtonColor: AppConstant.kBkDark,
                   buttonColor: AppConstant.kLight,
