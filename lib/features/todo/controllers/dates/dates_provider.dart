@@ -23,6 +23,18 @@ class StartTimeState extends _$StartTimeState {
   void setStart(String newState) {
     state = newState;
   }
+
+  List<int> dates(DateTime startingDate) {
+    DateTime now = DateTime.now();
+
+    Duration difference = startingDate.difference(now);
+
+    int days = difference.inDays;
+    int hours = difference.inHours % 24;
+    int minutes = difference.inMinutes % 60;
+    int seconds = difference.inSeconds % 60;
+    return [days, hours, minutes, seconds];
+  }
 }
 
 @riverpod

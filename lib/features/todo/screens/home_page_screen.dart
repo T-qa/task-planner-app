@@ -30,9 +30,18 @@ class _HomePageState extends ConsumerState<HomePage>
     length: 2,
     vsync: this,
   );
-  late NotificationHelper notificationHelper;
-  late NotificationHelper notificationController;
+  late NotificationHelper notifierHelper;
+  late NotificationHelper notifierController;
   final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    notifierHelper = NotificationHelper(ref: ref);
+    Future.delayed(const Duration(seconds: 0), () {
+      notifierController = NotificationHelper(ref: ref);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

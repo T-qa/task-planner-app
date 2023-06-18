@@ -7,10 +7,15 @@ import 'package:task_planner_app/common/widgets/reusable_text.dart';
 import 'package:task_planner_app/common/widgets/width_spacer.dart';
 
 class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({super.key});
+  const NotificationScreen({super.key, this.payload});
+  final String? payload;
 
   @override
   Widget build(BuildContext context) {
+    var title = payload!.split('|')[0];
+    var descripton = payload!.split('|')[1];
+    var begin = payload!.split('|')[3];
+    var finish = payload!.split('|')[4];
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -68,7 +73,7 @@ class NotificationScreen extends StatelessWidget {
                             ),
                             const WidthSpacer(widthSpacing: 15),
                             ReusableText(
-                              text: 'From : start to : end',
+                              text: 'From : $begin to : $finish',
                               style: appStyle(
                                 15,
                                 AppConstant.kBkDark,
@@ -80,7 +85,7 @@ class NotificationScreen extends StatelessWidget {
                       ),
                       const HeightSpacer(heightSpacing: 10),
                       ReusableText(
-                        text: 'Title',
+                        text: title,
                         style: appStyle(
                           30,
                           AppConstant.kBkDark,
@@ -89,7 +94,7 @@ class NotificationScreen extends StatelessWidget {
                       ),
                       const HeightSpacer(heightSpacing: 10),
                       Text(
-                        '....................',
+                        descripton,
                         maxLines: 8,
                         textAlign: TextAlign.justify,
                         style: appStyle(

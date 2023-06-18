@@ -43,19 +43,20 @@ class MyApp extends ConsumerWidget {
           return DynamicColorBuilder(
             builder: (lightColorScheme, darkColorScheme) {
               return MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'T-qa',
-                  theme: ThemeData(
-                    scaffoldBackgroundColor: AppConstant.kBkDark,
-                    colorScheme: lightColorScheme ?? defaultLightColorScheme,
-                    useMaterial3: true,
-                  ),
-                  darkTheme: ThemeData(
-                    colorScheme: darkColorScheme ?? defaultDarkColorScheme,
-                  ),
-                  themeMode: ThemeMode.dark,
-                  home: users.isEmpty ? const OnBoarding() : const HomePage(),
-                  onGenerateRoute: Routes.onGenerateRoute);
+                debugShowCheckedModeBanner: false,
+                title: 'T-qa',
+                theme: ThemeData(
+                  scaffoldBackgroundColor: AppConstant.kBkDark,
+                  colorScheme: lightColorScheme ?? defaultLightColorScheme,
+                  useMaterial3: true,
+                ),
+                darkTheme: ThemeData(
+                  colorScheme: darkColorScheme ?? defaultDarkColorScheme,
+                ),
+                themeMode: ThemeMode.dark,
+                home: users.isEmpty ? const OnBoarding() : const HomePage(),
+                onGenerateRoute: Routes.onGenerateRoute,
+              );
             },
           );
         });
