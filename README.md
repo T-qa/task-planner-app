@@ -68,7 +68,7 @@ Create a comprehensive task management applicaiton using Flutter, Firebase, Rive
 * [timezone](https://pub.dev/packages/timezone)
 * [flutter_datetime_picker_plus](https://pub.dev/packages/flutter_datetime_picker_plus)
 
-
+</details>
 
 ## Getting Started
 Follow the steps below to get started with the Flutter Whatsapp Clone project:
