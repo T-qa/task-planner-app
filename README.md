@@ -1,6 +1,6 @@
 # Flutter Task Planner
 
-Create a comprehensive task management applicaiton using Flutter, Firebase, Riverpod 2.0, and Sqlite
+Create a comprehensive task management applicaiton using Flutter, Firebase, Riverpod 2.0, and Sqflite
 
 ## Feature
 
